@@ -7,17 +7,16 @@ import App.Update exposing(update)
 import App.Subscription exposing(subscriptions)
 import App.Msg   exposing(Msg)
 
-import Html exposing(program)
-
+import Browser exposing(embed)
 
 -- Headless
 ---http://package.elm-lang.org/packages/elm-lang/core/5.1.1/Platform#program
 --
 -- Html based 
 -- http://package.elm-lang.org/packages/elm-lang/html/2.0.0/Html#program
-main : Program Never Model Msg
+main: Program Int Model Msg
 main =
-    program
+    embed
         { init = init      -- initialize the model
         , view = view      -- display the model
         , update = update  -- update the model
