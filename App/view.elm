@@ -4,7 +4,7 @@ import App.Model exposing(Model,Dress,Variant)
 
 import App.Msg   exposing(..)
 
-import Html exposing (Html, program, ul, li, div, dd, dt, dl, text, h3, button, img, span)
+import Html exposing (Html, ul, li, div, dd, dt, dl, text, h3, button, img, span)
 
 import Html.Attributes exposing (class)
 
@@ -17,7 +17,7 @@ view inventory =
         [ h3 [ class "inventory" ] [ text
                                          ("Inventory  (Version"
                                               ++
-                                              toString inventory.version
+                                              String.fromInt inventory.version
                                               ++
                                               ")")
                                    ]
@@ -26,42 +26,42 @@ view inventory =
 
 
 dresses : List Dress -> List (Html Msg)
-dresses dresses =
-    List.map (\d -> dress d ) dresses
+dresses list =
+    List.map (\d -> dress d ) list
 
 
 dress : Dress -> Html Msg
-dress dress =
-    if dress.visible then
+dress model =
+    if model.visible then
       li [ class "dress" ]
           [
-            dress_action dress
-          , name dress.name
-          , variants dress.variants
+            dress_action model
+          , name model.name
+          , variants model.variants
           ]
     else
-      li [ class "dress hidden"] [ dress_action dress]
+      li [ class "dress hidden"] [ dress_action model]
 
 dress_action: Dress -> Html Msg
-dress_action dress =
-    if dress.visible == True then
-        button [onClick (Collapse dress)] [text ("Hide" ++ toString dress.id)]
+dress_action model =
+    if model.visible == True then
+        button [onClick (Collapse model)] [text ("Hide" ++ String.fromInt model.id)]
     else
-        button [onClick (Expand dress)] [text ("Show" ++ toString dress.id)]
+        button [onClick (Expand model)] [text ("Show" ++ String.fromInt model.id)]
 
 
 variants : List Variant -> Html msg
-variants variants =
+variants list =
     ul [ class "variants" ]
-        (List.map (\v -> variant v) variants)
+        (List.map (\v -> variant v) list)
 
 
 variant : Variant -> Html msg
-variant variant =
+variant model =
     li [ class "variant" ]
-        [ color variant.color
-        , price variant.price
-        , size variant.size
+        [ color model.color
+        , price model.price
+        , size  model.size
         ]
 
 

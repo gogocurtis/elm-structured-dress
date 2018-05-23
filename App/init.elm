@@ -4,8 +4,8 @@ import App.Model exposing(Model,Inventory,Dress,Variant)
 
 import App.Msg   exposing(..)
 
-init: ( Model, Cmd Msg)
-init =
+init: Int -> ( Model, Cmd Msg)
+init flags =
     (initial_state, Cmd.none)
 
 
