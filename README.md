@@ -17,3 +17,4 @@ App/view.elm
 App/init.elm
 App/subscriptions.elm
 
+./elm make main.elm
